@@ -4,20 +4,21 @@
 body {
     font-family: Arial, helvetica;
     font-size: 14px;
+    margin:0;
 }
 .logo {
     font-size: 100px;
     font-weight: bolder;
     letter-spacing: -6px;
-    color: #222;
-    margin: 20px 30px;
+    color: #fff;;
+    margin-bottom: 20px;
 }
 .logo .number {
     color: #222;
     opacity: 0.1;
 }
 .navigation {
-    margin-left: 33px;
+    text-align:center;
 }
 .navigation a {
     display: inline-block;
@@ -29,11 +30,14 @@ body {
     border: 2px solid #222;
     background: #222;
     color: #fff;
+    border-radius:5px;
 }
 .navigation a:hover {
     color: #222;
     background: transparent;
+    transition-duration: 0.4s;
 }
+
 .container {
     border: 1px solid #ddd;
     padding: 20px;
@@ -82,8 +86,6 @@ body {
     background-color: #222;
     color: #fff;
 }
-
-/* MIGUEL */
 
 .listadocanciones{
     border: 1px solid #ccc;
@@ -152,6 +154,7 @@ label{
     padding: 15px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
+    overflow: auto;
 }
 .pregunta h3{
     background-color: #eee;
@@ -167,9 +170,22 @@ label{
     padding-left: 5px;
 }
 .pregunta footer a{
+    font-size: 1em;
+    padding: 3px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 3px #222 solid;
+    color: #222;
     text-decoration: none;
-    color: #06c;
+    font-weight: bold;
 }
+
+.pregunta footer :hover{
+    color: #fff;
+    background-color: #222;
+    transition-duration: 0.4s;
+}
+
 .muestrarespuestas{
     background-color: #f8f8f8;
     padding: 15px;
@@ -184,17 +200,106 @@ label{
     padding: 15px;
 }
 
+footer > address {
+    text-align: center;
+    font-size: 1.3em;
+    padding: 10px;
+}
+.pie{
+    background-color: #222;
+    color:#fff;
+    width: 100%;
+}
+.cabecera{
+    background-color: #222;
+    text-align: center;
+}
+
+a.empresa{
+    border-radius: 5px;
+    border: 3px #222 solid;
+    color: #222;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+}
+
+a.empresa:hover{
+    border: 3px #222 solid;
+    text-decoration: none;
+    color: #fff;
+    background-color: #222;
+    transition-duration: 0.6s;
+}
+.borde {
+    border:none;
+}
+
+textarea{
+    width: 100%;
+}
+a.back-to-top {
+    display: none;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px;
+    position: fixed;
+    z-index: 999;
+    right: 20px;
+    bottom: 20px;
+    background: #F44336 url("up-arrow.png") no-repeat center 43%;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+a:hover.back-to-top {
+    background-color: #000;
+}
 @media (max-width: 500px) {
     .navigation a{
      font-size: .8em;
         padding: 10px 5px;
     }
     .logo{
+        text-align: center;
         font-size: 80px;
     }
     .container{
         font-size: 1.1em;
         margin: 8px;
         padding: 5px;
+    }
+    .borde {
+        border:none;
+        margin:20px;
+    }
+    footer > address {
+        text-align: center;
+        font-size: 1em;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .logo{
+        text-align: center;
+        font-size: 50px;
+    }
+
+    .borde {
+        border:none;
+        margin:10px;
+    }
+    a.empresa {
+        font-size: 1em;
+        padding: 3px;
+        display: inline-block;
+    }
+    a.back-to-top{
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        bottom: 10px;
     }
 }

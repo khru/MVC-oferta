@@ -4,7 +4,7 @@ class Error extends Controller
 {
     private $msg;
 
-    public function __construct($msg = "",View $view)
+    public function __construct($msg = '',View $view)
     {
         parent::__construct($view);
         $this->msg = $msg;
@@ -12,8 +12,9 @@ class Error extends Controller
 
     public function index()
     {
-        echo $this->view->render('error/index', array(
+        echo $this->view->render('error/index',[
             'msg' => $this->msg
-        ));
+        ]);
     }
+
 }

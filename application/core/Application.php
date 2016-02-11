@@ -20,13 +20,13 @@ class Application
         // create array with URL parts in $url
         $this->splitUrl();
 
-        //Sistema de Dependencias 
-        $dice = new \Dice\Dice; 
+        //Sistema de Dependencias
+        $dice = new \Dice\Dice;
 
         //Reglas del constructor, directorio de plantillas y singleton
-        $rule = ['constructParams' => ['directory' => APP . 'view'], 'shared' => true];
+        $rule = ['constructParams' => ['directory' => APP . 'view']/*, 'shared' => true*/];
         $dice->addRule('League\Plates\Engine', $rule);
-        $rule = ['constructParams' => ['msg' => "ERROR,Ese controlador no existe"]];
+        $rule = ['constructParams' => ['msg' => "ERROR, El recurso al que estas intentando acceder no está disponible."]];
         $dice->addRule('Error', $rule);
 
         // check for controller: no controller given ? then load start-page
@@ -40,7 +40,7 @@ class Application
             // if so, then load this file and create this controller
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
             require APP . 'controller/' . $this->url_controller . '.php';
-            $this->url_controller = $dice->create($this->url_controller); 
+            $this->url_controller = $dice->create($this->url_controller);
 
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->url_controller, $this->url_action)) {
@@ -55,8 +55,7 @@ class Application
                 if (strlen($this->url_action) == 0) {
                     // no action defined: call the default index() method of a selected controller
                     $this->url_controller->index();
-                }
-                else {
+                } else {
                     header('HTTP/1.0 404 Not Found');
                     require APP . 'controller/Error.php';
                     $cont_error = $dice->create("Error");

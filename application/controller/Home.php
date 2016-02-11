@@ -18,7 +18,8 @@ class Home extends Controller
     {
 
         echo $this->view->render("home/index", [
-            'titulo' => 'Estás en la portadas'
+            'seccion1' => 'Introducción',
+            'seccion2' => 'Como usar la aplicación'
         ]);
 
     }
