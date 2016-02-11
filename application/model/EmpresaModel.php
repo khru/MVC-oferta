@@ -6,6 +6,13 @@
 	// Métodos de acceso a la base de datos
 	// =============================================================
 
+		/**
+		 * Método hecho exclusivamente para que al editar se pueda comprobar
+		 * que el nombre de la oferta que estas intentando actualizar, no
+		 * pertenece ya a otra oferta
+		 * @param  Integer $id ID de la empresa
+		 * @return Boolean     True = existe el nombre, False = no existe el nombre
+		 */
 		public static function comprobarPropiedadEmpresa($id)
 		{
 			$ssql = 	'SELECT *
@@ -34,8 +41,8 @@
 
 		/**
 		 * Método que devuelve todas las empresas salvo la mia
-		 * @param  Integet $id ID a obviar
-		 * @return Array     Todas las empresas menos la que edito
+		 * @param  Integet $id 	ID a obviar
+		 * @return Array     	Todas las empresas menos la que edito
 		 */
 		public static function getNombreNoRepetido($id)
 		{
@@ -249,7 +256,6 @@
 	     */
 	    public static function insert($array)
 	    {
-	    	//$conn = Database::getInstance()->getDatabase();
 	   		$ssql = 'INSERT INTO empresa (nombre, web, descripcion, usuario) VALUES (UPPER(:nombre), LOWER(:web), :descripcion, :usuario)';
 	   		$params = [	':nombre' 		=> $array[':nombre'],
 	   					':web' 			=> $array[':web'],

@@ -37,7 +37,7 @@ class Database
 
     /**
      * Método que devuelve la conexión a la base de datos
-     * @return [type] [description]
+     * @return PDO Conexión a la base de datos
      */
     public function getDatabase()
     {

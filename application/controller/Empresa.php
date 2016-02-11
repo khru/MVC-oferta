@@ -160,5 +160,10 @@
 
 	    }// editar()
 
+	    public function buscar()
+	    {
+
+	    }// buscar()
+
 	}// clase EMpresa
 ?>

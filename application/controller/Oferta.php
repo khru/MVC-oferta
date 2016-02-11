@@ -157,7 +157,7 @@
 	    		/*echo '<pre>';
 	    		echo $e->getMessage();*/
 	    	}
-	    }
+	    }// editar()
 
 	}
 ?>
