@@ -42,6 +42,7 @@ body {
     border: 1px solid #ddd;
     padding: 20px;
     margin: 33px;
+    background-color:white;
 }
 .container a {
     color: #222;
@@ -70,11 +71,14 @@ body {
 .container input[type="submit"] {
     background-color: #ccc;
     cursor: pointer;
+    border:3px black solid;
     font-size: 1.1em;
 }
 .container input[type="submit"]:hover {
     background-color: #222;
     color: #fff;
+    border:3px #ccc solid;
+    transition-duration: 0.5s;
 }
 .container button {
     background-color: #ccc;
@@ -259,6 +263,7 @@ a:hover.back-to-top {
     text-align:center;
     margin:0 auto;
 }
+
 
 @media (max-width: 500px) {
     .navigation a{

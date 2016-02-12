@@ -284,7 +284,7 @@
 	   	 */
 	   	public static function search($params)
 	   	{
-	   		$ssql = 'SELECT oferta.id as id, oferta.nombre as nombre, oferta.descripcion as descripcion, oferta.requisitos as requisitos, url, salario, empresa.nombre as empresa  FROM oferta, empresa, usuario WHERE oferta.empresa = empresa.id AND empresa.usuario = usuario.id AND usuario.id = :usuario AND (oferta.nombre LIKE :busqueda OR oferta.descripcion LIKE :busqueda OR oferta.requisitos LIKE :busqueda OR url LIKE :busqueda OR salario LIKE :busqueda OR empresa.nombre LIKE :busqueda)';
+	   		$ssql = 'SELECT oferta.id as id, oferta.nombre as nombre, oferta.descripcion as descripcion, oferta.requisitos as requisitos, url, salario, empresa.nombre as empresa, fecha_alta as fecha FROM oferta, empresa, usuario WHERE oferta.empresa = empresa.id AND empresa.usuario = usuario.id AND usuario.id = :usuario AND (oferta.nombre LIKE :busqueda OR oferta.descripcion LIKE :busqueda OR oferta.requisitos LIKE :busqueda OR url LIKE :busqueda OR salario LIKE :busqueda OR empresa.nombre LIKE :busqueda OR fecha_alta LIKE :busqueda)';
 	   		//d($ssql);die();
 	   		return Database::consulta($ssql, $params, $estado = 1);
 	   	}// search()+
