@@ -255,9 +255,14 @@ a.back-to-top {
 a:hover.back-to-top {
     background-color: #000;
 }
+.buscador input{
+    text-align:center;
+    margin:0 auto;
+}
+
 @media (max-width: 500px) {
     .navigation a{
-     font-size: .8em;
+        font-size: .8em;
         padding: 10px 5px;
     }
     .logo{
@@ -268,6 +273,7 @@ a:hover.back-to-top {
         font-size: 1.1em;
         margin: 8px;
         padding: 5px;
+        overflow:auto;
     }
     .borde {
         border:none;

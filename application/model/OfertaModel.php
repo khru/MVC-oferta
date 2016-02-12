@@ -187,6 +187,47 @@
 	    	}
 	    }//editar()
 
+
+	    /**
+	     * Método de busqueda
+	     * @param  Array $array 	Datos a buscar
+	     * @return Array | false    Array con los resultados o false cuando hay errores
+	     */
+	   	public static function buscar($array)
+	   	{
+	   		// comprobamos si el array que nos e
+	   		if (!$array) {
+	   			Session::add('feedback_negative', 'No se han recicibido datos');
+	    		return false;
+	   		} else {
+	   			// Existen datos hay que validarlo
+	   			if (isset($array['busqueda'])) {
+	   				if (empty(isset($array['busqueda'])) || mb_strlen(trim($array['busqueda'])) === 0) {
+	   					Session::add('feedback_negative', 'No se han recicibido datos a buscar');
+	   				} else {
+	   					// saneamos la busqueda
+	   					$busqueda = Validaciones::limpiarString($array['busqueda']);
+	   					$busqueda = '%' . $busqueda . '%';
+	   					// lanzo la consulta a la base de datos
+	   					$usuario = (int) Session::get('user_id');
+	   					$params = [':busqueda' => $busqueda, ':usuario' => $usuario];
+	   					$resultado =  OfertaModel::search($params);
+	   					if (!$resultado) {
+	   						Session::add('feedback_negative', 'No se han encontrado resultados');
+	   					}
+	   					return $resultado;
+	   				}
+
+				return Session::comprobarErrores();
+
+	   			} else {
+	   				// No existe la busqueda
+	   				Session::add('feedback_negative', 'No se han recicibido datos a buscar');
+	    			return false;
+	   			}
+	   		}
+	   	}// buscar()
+
 	// ====================================================================
 	// Métodos que ejecutan las modificaciones en la base de datos
 	// ====================================================================
@@ -234,7 +275,19 @@
 	   	{
 	   		$ssql = 'UPDATE oferta SET nombre = UPPER(:nombre), descripcion = LOWER(:descripcion), requisitos = :requisitos, url = :url, salario = :salario, empresa = :empresa WHERE id = :id';
 	   		return Database::consulta($ssql, $params, $estado = 3);
-	   	}
+	   	}// edit()
+
+	   	/**
+	   	 * Método que ejecuta la busqueda y la devuelve
+	   	 * @param  Array $params  Datos que entran se estan buscando
+	   	 * @return Array         [description]
+	   	 */
+	   	public static function search($params)
+	   	{
+	   		$ssql = 'SELECT oferta.id as id, oferta.nombre as nombre, oferta.descripcion as descripcion, oferta.requisitos as requisitos, url, salario, empresa.nombre as empresa  FROM oferta, empresa, usuario WHERE oferta.empresa = empresa.id AND empresa.usuario = usuario.id AND usuario.id = :usuario AND (oferta.nombre LIKE :busqueda OR oferta.descripcion LIKE :busqueda OR oferta.requisitos LIKE :busqueda OR url LIKE :busqueda OR salario LIKE :busqueda OR empresa.nombre LIKE :busqueda)';
+	   		//d($ssql);die();
+	   		return Database::consulta($ssql, $params, $estado = 1);
+	   	}// search()+
 
 	// =================================================================
 	// Método de Validación que realiza las validaciones pertinentes
@@ -310,7 +363,7 @@
 	    	}
 
 	    	// validamos la empresa
-	    	if (isset($array['empresa']) || empty($array['empresa'])) {
+	    	if (isset($array['empresa']) || !empty($array['empresa'])) {
 	    		$array['empresa'] = Validaciones::saneamiento($array['empresa']);
 	    		if (!OfertaModel::getIdEmpresaByNombre($array['empresa'])) {
 	    			Session::add('feedback_negative', 'La empresa no existe');
@@ -324,10 +377,7 @@
 	    	}
 
 	    	// Comprobación de de que no haya habido errores
-	    	if (Session::get('feedback_negative')) {
-	    		return false;
-	    	}
-	    	return true;
+	    	return Session::comprobarErrores();
 
 	    }//validar()
 

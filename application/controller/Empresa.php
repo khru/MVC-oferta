@@ -160,10 +160,29 @@
 
 	    }// editar()
 
+	    /**
+	     * método que realiza la busqueda
+	     */
 	    public function buscar()
 	    {
-
+    		if ($empresas = EmpresaModel::buscar($_POST)) {
+    			// llamamamos a la vista que permitira ver los resultados
+    			$datos = ['empresas' => $empresas];
+    			echo $this->view->render('empresa/listaEmpresas', $datos);
+    		} else {
+    			// Hay errores
+    			if (isset($_POST['busqueda'])) {
+    				$_POST['busqueda'] = Validaciones::limpiarString($_POST['busqueda']);
+    				$empresas = EmpresaModel::todas();
+	    			$datos = ['empresas' => $empresas,'busqueda' => $_POST['busqueda']];
+	        		echo $this->view->render("empresa/index", $datos);
+    			} else {
+    				// no se ha realizado busqueda alguna
+    				header('Location: /Empresa');
+    				exit();
+    			}
+    		}
 	    }// buscar()
 
-	}// clase EMpresa
+	}// clase Empresa
 ?>

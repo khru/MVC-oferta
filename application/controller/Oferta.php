@@ -159,5 +159,29 @@
 	    	}
 	    }// editar()
 
-	}
+	    /**
+	     * método que realiza la busqueda
+	     */
+	    public function buscar()
+	    {
+    		if ($ofertas = OfertaModel::buscar($_POST)) {
+    			// llamamamos a la vista que permitira ver los resultados
+    			$datos = ['ofertas' => $ofertas];
+    			echo $this->view->render('ofertas/listaOfertas', $datos);
+    		} else {
+    			// Hay errores
+    			if (isset($_POST['busqueda'])) {
+    				$_POST['busqueda'] = Validaciones::limpiarString($_POST['busqueda']);
+    				$ofertas = OfertaModel::todas();
+	    			$datos = ['ofertas' => $ofertas,'busqueda' => $_POST['busqueda']];
+	        		echo $this->view->render("ofertas/index", $datos);
+    			} else {
+    				// no se ha realizado busqueda alguna
+    				header('Location: /Oferta');
+    				exit();
+    			}
+    		}
+	    }// buscar()
+
+	}// fin de la clase Oferta
 ?>

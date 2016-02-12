@@ -138,10 +138,7 @@
 	    	}// fin de la validación de las contraseñas
 
 	    	// Comprobación de de que no haya habido errores
-	    	if (Session::get('feedback_negative')) {
-	    		return false;
-	    	}
-	    	return true;
+	    	return Session::comprobarErrores();
 
 	    }//validar()
 

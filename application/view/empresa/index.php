@@ -1,7 +1,15 @@
 <?php $this->layout('layout') ?>
+<!-- Introducimos el buscador -->
+<?php if(isset($busqueda)) : $busqueda = ['busqueda' => $busqueda];?>
+<?php $this->insert('empresa/buscadorEmpresa', $busqueda) ?>
+<?php else: ?>
+<?php $this->insert('empresa/buscadorEmpresa') ?>
+<?php endif; ?>
+<!-- Boton de crear -->
 <div class="container borde">
     <a href="/Empresa/crear" class="empresa">Crear Empresa</a>
 </div>
+<!-- contenedor del listado -->
 <div class="container">
     <?php $this->insert('partials/feedback') ?>
     <h2>Lista de empresas</h2>

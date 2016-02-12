@@ -1,4 +1,10 @@
 <?php $this->layout('layout') ?>
+<!-- Introducimos el buscador -->
+<?php if(isset($busqueda)) : $busqueda = ['busqueda' => $busqueda];?>
+    <?php $this->insert('ofertas/buscadorOferta', $busqueda) ?>
+<?php else: ?>
+    <?php $this->insert('ofertas/buscadorOferta') ?>
+<?php endif; ?>
 <div class="container borde">
     <a href="/Oferta/crear" class="empresa">Crear Oferta</a>
 </div>

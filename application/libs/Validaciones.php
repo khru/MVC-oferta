@@ -978,7 +978,7 @@
 	 */
 	public static function limpiarString($texto)
 	{
-      $textoLimpio = preg_replace('([^A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙ 0-9])', '', $texto);
+      $textoLimpio = preg_replace('([^A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙ.\/: 0-9])', '', $texto);
       return $textoLimpio;
 	}
 	public static function limpiarTextarea($texto)

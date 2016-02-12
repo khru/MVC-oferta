@@ -72,5 +72,17 @@ class Session
             $estado = false;
         }
         return $estado;
-    }
+    }// comprobarSession()
+
+    /**
+     * Método que comprueba si existen errores en la sessión
+     * @return Boolean True = cuando no hay errores, False = cuando hay errores
+     */
+    public static function comprobarErrores()
+    {
+        if (Session::get('feedback_negative')) {
+            return false;
+        }
+        return true;
+    }// comprobarErrores()
 }
